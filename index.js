@@ -20,7 +20,7 @@ server.post('/getQuotes',function (request,response)  {
                 "api_key": "0963ed7e81fa83d7e4518b7018ef0a02"
                 //https://api.themoviedb.org/3/movie/550?api_key=0963ed7e81fa83d7e4518b7018ef0a02
             });
-            req.send("{;}");
+            req.send("{AAAAAAAAAA}");
             req.end(function(res) {
                 if(res.error) {
                     response.setHeader('Content-Type', 'application/json');
