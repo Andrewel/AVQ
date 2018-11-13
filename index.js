@@ -31,8 +31,8 @@ server.post('/getQuotes',function (request,response)  {
                 } else if(res.body.results.length > 0) {
                     let result = res.body.results;
                     let output = '';
-                    for(let i = 1; i<result.length;i++) {
-                        output += i + ")" + result[i--].title + ";";
+                    for(let i = 0; i<result.length;i++) {
+                        output += i + ")" + result[i].title + ";";
                         output+="\n"
                     }
                     response.setHeader('Content-Type', 'application/json');
