@@ -39,13 +39,13 @@ server.post('/getQuotes',function (request,response)  {
                     response.send(JSON.stringify({
                         "speech" : output,
                         "displayText" : output
-                    })); 
+                    }));
                 }
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : res.body.quote.body,
-                        "displayText" : res.body.quote.body
-                    })); 
+                        "speech" : res.body.quote.body + "--" + res.body.quote.author,
+                        "displayText" : res.body.quote.body + "--" + res.body.quote.author
+                    }));
 
             });
     } else if(request.body.result.parameters['movie-name']) {
@@ -69,7 +69,7 @@ server.post('/getQuotes',function (request,response)  {
                     }));
                 } else if(res.body.results.length > 0) {
                 let result = res.body.results[0];
-                let output = "Average Rating : " + result.vote_average + 
+                let output = "Average Rating : " + result.vote_average +
                 "\n Plot : " + result.overview + "url" + result.poster_path
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
@@ -85,7 +85,7 @@ server.post('/getQuotes',function (request,response)  {
                 }
             });
 
-    } else if(request.body.result.parameters['popular-movies']) {    
+    } else if(request.body.result.parameters['popular-movies']) {
         var req = unirest("GET", "https://api.themoviedb.org/3/movie/popular");
             req.query({
                 "page": "1",
@@ -111,7 +111,7 @@ server.post('/getQuotes',function (request,response)  {
                     response.send(JSON.stringify({
                         "speech" : output,
                         "displayText" : output
-                    })); 
+                    }));
                 }
             });
     }
