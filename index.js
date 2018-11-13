@@ -11,8 +11,8 @@ var port = process.env.PORT || 8080;
 // create serve and configure it.
 const server = express();
 server.use(bodyParser.json());
-server.post('/getMovies',function (request,response)  {
-    if(request.body.result.parameters['top-rated']) {
+server.post('/getQuotes',function (request,response)  {
+    if(request.body.result.parameters['q']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
             /*req.query({
                 "page": "1",
