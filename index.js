@@ -30,10 +30,10 @@ server.post('/getQuotes',function (request,response)  {
                     }));
                 } else if(res.body.results.length > 0) {
                     let result = res.body.results;
-                    let output = ';';
+                    let output = '';
                     for(let i = 0; i<result.length;i++) {
                         output += result[i].title;
-                        output+="\n"
+                        output+=";\n"
                     }
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
