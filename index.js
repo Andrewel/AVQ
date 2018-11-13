@@ -15,8 +15,7 @@ server.post('/getQuotes',function (request,response)  {
     if(request.body.result.parameters['q']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
             req.query({
-                "qotd_date"
-                "quote":
+                "qotd_date",
                 "page": "1",
                 "language": "en-US",
                 "api_key": "0963ed7e81fa83d7e4518b7018ef0a02"
