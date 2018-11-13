@@ -13,7 +13,7 @@ const server = express();
 server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
     if(request.body.result.parameters['q']) {
-        var req = unirest("GET", "https://favqs.com/api/qotd");
+        var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
                 "page": "1",
                 "language": "en-US",
