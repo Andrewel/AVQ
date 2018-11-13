@@ -43,8 +43,8 @@ server.post('/getQuotes',function (request,response)  {
                 }
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : res.body.quote.body + "--" + res.body.quote.author,
-                        "displayText" : res.body.quote.body + "--" + res.body.quote.author
+                        "speech" : res.body.quote.body + "\n--" + res.body.quote.author,
+                        "displayText" : res.body.quote.body + "\n--" + res.body.quote.author
                     }));
 
             });
