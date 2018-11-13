@@ -1,6 +1,34 @@
 // dependencies
 'use strict';
-const express = require('express');
+
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+module.exports = router;
+
+const request = require('request');
+
+/*request('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    console.log(body.url);
+    console.log(body.explanation);
+    console.log(body.date);
+});*/
+
+request('https://favqs.com/api/qotd', { json: true }, (err, res, body) => {
+    if (err) { return console.log(err); }
+    console.log(body.quote.body+"\n");
+    console.log(body.quote.author);
+});
+
+
+
+/*const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('https');
 var unirest = require("unirest");
@@ -115,4 +143,5 @@ server.get('/getName',function (req,res){
 });
 server.listen(port, function () {
     console.log("Server is up and running...");
-});
+});*/
+
