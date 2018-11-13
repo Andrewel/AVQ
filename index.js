@@ -15,7 +15,7 @@ server.post('/getQuotes',function (request,response)  {
     if(request.body.result.parameters['q']) {
         var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
-                "page": "1",
+                "page": "2",
                 "language": "en-US",
                 "api_key": "0963ed7e81fa83d7e4518b7018ef0a02"
                 //https://api.themoviedb.org/3/movie/550?api_key=0963ed7e81fa83d7e4518b7018ef0a02
