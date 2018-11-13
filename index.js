@@ -33,7 +33,7 @@ server.post('/getQuotes',function (request,response)  {
                     let output = '';
                     for(let i = 0; i<result.length;i++) {
                         output += result[i].title;
-                        output+=";\n"
+                        output+=i+")"+";\n"
                     }
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
