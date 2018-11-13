@@ -1,34 +1,6 @@
 // dependencies
 'use strict';
-
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
-
-const request = require('request');
-
-/*request('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', { json: true }, (err, res, body) => {
-    if (err) { return console.log(err); }
-    console.log(body.url);
-    console.log(body.explanation);
-    console.log(body.date);
-});*/
-
-request('https://favqs.com/api/qotd', { json: true }, (err, res, body) => {
-    if (err) { return console.log(err); }
-    console.log(body.quote.body+"\n");
-    console.log(body.quote.author);
-});
-
-
-
-/*const express = require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('https');
 var unirest = require("unirest");
@@ -41,13 +13,13 @@ const server = express();
 server.use(bodyParser.json());
 server.post('/getMovies',function (request,response)  {
     if(request.body.result.parameters['top-rated']) {
-        var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
-            req.query({
+        var req = unirest("GET", "https://favqs.com/api/qotd");
+            /*req.query({
                 "page": "1",
                 "language": "en-US",
                 "api_key": "0963ed7e81fa83d7e4518b7018ef0a02"
                 //https://api.themoviedb.org/3/movie/550?api_key=0963ed7e81fa83d7e4518b7018ef0a02
-            });
+            });*/
             req.send("{}");
             req.end(function(res) {
                 if(res.error) {
@@ -143,5 +115,5 @@ server.get('/getName',function (req,res){
 });
 server.listen(port, function () {
     console.log("Server is up and running...");
-});*/
+});
 
