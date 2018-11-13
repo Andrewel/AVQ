@@ -14,7 +14,9 @@ server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
     if(request.body.result.parameters['q']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
-            
+            req.query({
+                
+            });
             req.send("{}");
             req.end(function(res) {
                 if(res.error) {
