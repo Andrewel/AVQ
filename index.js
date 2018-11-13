@@ -29,7 +29,7 @@ server.post('/getQuotes',function (request,response)  {
                         "displayText" : "Error. Can you try it again ? "
                     }));
                 } else if(res.body.length >= 0) {
-                    let result = res.body;
+                    let result = res.body.quote.body;
                     let output = '';
                     for(let i = 0; i<result.length;i++) {
                         output += i + ")" + result[i].title + ";";
@@ -41,6 +41,12 @@ server.post('/getQuotes',function (request,response)  {
                         "displayText" : output
                     })); 
                 }
+                    response.setHeader('Content-Type', 'application/json');
+                    response.send(JSON.stringify({
+                        "speech" : res.body.quote.body,
+                        "displayText" : res.body.quote.body
+                    })); 
+
             });
     } else if(request.body.result.parameters['movie-name']) {
      //   console.log('popular-movies param found');
