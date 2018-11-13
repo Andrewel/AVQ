@@ -14,12 +14,14 @@ server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
     if(request.body.result.parameters['q']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
-            /*req.query({
+            req.query({
+                "qotd_date"
+                "quote":
                 "page": "1",
                 "language": "en-US",
                 "api_key": "0963ed7e81fa83d7e4518b7018ef0a02"
                 //https://api.themoviedb.org/3/movie/550?api_key=0963ed7e81fa83d7e4518b7018ef0a02
-            });*/
+            });
             req.send("{}");
             req.end(function(res) {
                 if(res.error) {
