@@ -13,12 +13,9 @@ const server = express();
 server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
     if(request.body.result.parameters['q']) {
-        var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
+        var req = unirest("GET", "https://favqs.com/api/qotd");
             req.query({
-                "page": "2",
-                "language": "ru-RU",
-                "api_key": "0963ed7e81fa83d7e4518b7018ef0a02"
-                //https://api.themoviedb.org/3/movie/550?api_key=0963ed7e81fa83d7e4518b7018ef0a02
+                
             });
             req.send("{}");
             req.end(function(res) {
@@ -28,7 +25,7 @@ server.post('/getQuotes',function (request,response)  {
                         "speech" : "Error. Can you try it again ? ",
                         "displayText" : "Error. Can you try it again ? "
                     }));
-                } else if(res.body.results.length > 0) {
+                } else if(res.body.results.length >= 0) {
                     let result = res.body.results;
                     let output = '';
                     for(let i = 0; i<result.length;i++) {
