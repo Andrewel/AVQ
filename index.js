@@ -145,7 +145,7 @@ server.post('/getQuotes',function (request,response)  {
                 "speech" : res.body.quote.body + "\n--" + res.body.quote.author,
                 "displayText" : res.body.quote.body + "\n--" + res.body.quote.author
             }));
-           // console.log(res.body);
+            console.log(res.body);
         });
     }
 });
