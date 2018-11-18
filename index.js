@@ -119,7 +119,7 @@ server.post('/getQuotes',function (request,response)  {
         response.headers({
             'Authorization': "Token token=ab40a3786cae9e7a777a856f0225a564"
         })
-        //req.send("{}");
+        req.send("{}");
         req.end(function(res){
             if(res.error) {
                 response.setHeader('Content-Type', 'application/json');
