@@ -119,7 +119,7 @@ server.post('/getQuotes',function (request,response)  {
         req.headers({
             'Authorization': "Token token=ab40a3786cae9e7a777a856f0225a564"
         })
-        //req.send("{}");
+        req.send("{}");
         req.end(function(res){
             if(res.error) {
                 response.setHeader('Content-Type', 'application/json');
@@ -130,8 +130,8 @@ server.post('/getQuotes',function (request,response)  {
             } else {
                 response.setHeader('Content-Type', 'application/json');
                 response.send(JSON.stringify({
-                    "speech" : res.body,
-                    "displayText" : res.body
+                    "speech" : res.body.quotes,
+                    "displayText" : res.body.quotes
                 }));
             }
             //console.log(res.body);
