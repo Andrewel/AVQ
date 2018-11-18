@@ -10,6 +10,14 @@ let errorResposne = {
 var port = process.env.PORT || 8080;
 // create serve and configure it.
 const server = express();
+//
+function randomInt(low, high) {
+    return Math.floor(Math.random() * (high - low) + low)
+}
+var quote_id = 62500;
+quote_id+=randomInt(10,50);
+const url1 = `https://favqs.com/api/quotes/${quote_id}/?filter=andrewel&type=user`;
+//
 server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
     if(request.body.result.parameters['q']) {
@@ -115,7 +123,7 @@ server.post('/getQuotes',function (request,response)  {
                 }
             });
     }else if(request.body.result.parameters['av']) {
-        var req = unirest("GET", "https://favqs.com/api/quotes/62518/?filter=andrewel&type=user");
+        var req = unirest("GET", url1);
         req.headers({
             'Authorization': "Token token=ab40a3786cae9e7a777a856f0225a564"
         })
@@ -134,7 +142,6 @@ server.post('/getQuotes',function (request,response)  {
                     "displayText" : res.body.body
                 }));
             }
-            //console.log(res.body);
         });
     }
 });
