@@ -128,18 +128,23 @@ server.post('/getQuotes',function (request,response)  {
                     "displayText" : "Error. Can you try it again ? "
                 }));
             } else {
-               /* let result = res.body.results;
+                let result = res.body.results;
                 let output = '';
                 for(let i = 0; i < result.length;i++) {
                     output += result[i].title;
                     output+="\n"
-                }*/
+                }
                 response.setHeader('Content-Type', 'application/json');
                 response.send(JSON.stringify({
-                    "speech" : res.body,
-                    "displayText" : res.body
+                    "speech" : output,
+                    "displayText" : output
                 }));
             }
+            response.setHeader('Content-Type', 'application/json');
+            response.send(JSON.stringify({
+                "speech" : res.body.quote.body + "\n--" + res.body.quote.author,
+                "displayText" : res.body.quote.body + "\n--" + res.body.quote.author
+            }));
            // console.log(res.body);
         });
     }
