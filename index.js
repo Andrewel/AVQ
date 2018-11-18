@@ -116,6 +116,9 @@ server.post('/getQuotes',function (request,response)  {
             });
     }else if(request.body.result.parameters['av']) {
         var req = unirest("GET", "https://favqs.com/api/quotes/?filter=andrewel&type=user");
+        response.headers({
+            'Authorization': "Token token=ab40a3786cae9e7a777a856f0225a564"
+        })
         //req.send("{}");
         req.end(function(res){
             if(res.error) {
