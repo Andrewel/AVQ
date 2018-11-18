@@ -14,7 +14,6 @@ const server = express();
 function randomInt(low, high) {
     return Math.floor(Math.random() * (high - low) + low)
 }
-
 //
 server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
@@ -139,8 +138,8 @@ server.post('/getQuotes',function (request,response)  {
             } else {
                 response.setHeader('Content-Type', 'application/json');
                 response.send(JSON.stringify({
-                    "speech" : res.body.body,
-                    "displayText" : res.body.body
+                    "speech" : res.body.body + "\n--" + res.body.author,
+                    "displayText" : res.body.body + "\n--" + res.body.author
                 }));
             }
         });
