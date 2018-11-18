@@ -116,9 +116,9 @@ server.post('/getQuotes',function (request,response)  {
             });
     }else if(request.body.result.parameters['av']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
-        /*req.headers({
+        req.headers({
             'Authorization': "Token token=ab40a3786cae9e7a777a856f0225a564"
-        })*/
+        })
         //req.send("{}");
         req.end(function(res){
             if(res.error) {
@@ -130,8 +130,8 @@ server.post('/getQuotes',function (request,response)  {
             } else {
                 response.setHeader('Content-Type', 'application/json');
                 response.send(JSON.stringify({
-                    "speech" : res.body.quote.body + "\n--" + res.body.quote.author,
-                    "displayText" : res.body.quote.body + "\n--" + res.body.quote.author
+                    "speech" : res.body,
+                    "displayText" : res.body
                 }));
             }
             //console.log(res.body);
