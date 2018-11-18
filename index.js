@@ -114,6 +114,30 @@ server.post('/getQuotes',function (request,response)  {
                     }));
                 }
             });
+    }else if(request.body.result.parameters['av']) {
+        var req = unirest("GET", "https://favqs.com/api/quotes/?filter=andrewel&type=user");
+        //req.send("{}");
+        req.end(function(res){
+            if(res.error) {
+                response.setHeader('Content-Type', 'application/json');
+                response.send(JSON.stringify({
+                    "speech" : "Error. Can you try it again ? ",
+                    "displayText" : "Error. Can you try it again ? "
+                }));
+            } else {
+               /* let result = res.body.results;
+                let output = '';
+                for(let i = 0; i < result.length;i++) {
+                    output += result[i].title;
+                    output+="\n"
+                }*/
+                response.setHeader('Content-Type', 'application/json');
+                response.send(JSON.stringify({
+                    "speech" : response.body,
+                    "displayText" : response.body
+                }));
+            }
+        });
     }
 });
 server.get('/getName',function (req,res){
