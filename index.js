@@ -122,7 +122,7 @@ server.post('/getQuotes',function (request,response)  {
             });
     }else if(request.body.result.parameters['av']) {
         var quote_id = 62500;
-        quote_id+=randomInt(10,50);
+        quote_id+=randomInt(10,40);
         const url1 = `https://favqs.com/api/quotes/${quote_id}/?filter=andrewel&type=user`;
         var req = unirest("GET", url1);
         req.headers({
