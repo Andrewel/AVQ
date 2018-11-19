@@ -17,7 +17,7 @@ function randomInt(low, high) {
 //
 server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
-    if(request.body.result.parameters['q']) {
+    if(request.body.queryResult.parameters['q']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
            /* req.query({
                 "page": "2",
@@ -48,8 +48,7 @@ server.post('/getQuotes',function (request,response)  {
                 }
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                         "speech" : res.body.quote.body + "\n--" + res.body.quote.author,
-                         "displayText" : res.body.quote.body + "\n--" + res.body.quote.author
+                         "fulfillmentText" : res.body.quote.body + "\n--" + res.body.quote.author
                     }));
 
             });
