@@ -30,8 +30,7 @@ server.post('/getQuotes',function (request,response)  {
                 if(res.error) {
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : "Error. Can you try it again ? ",
-                        "displayText" : "Error. Can you try it again ? "
+                        "fulfillmentText" : "Error. Can you try it again ? "
                     }));
                 } else if(res.body.length >= 0) {
                     let result = res.body.quote.body;
@@ -42,8 +41,7 @@ server.post('/getQuotes',function (request,response)  {
                     }
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : output,
-                        "displayText" : output
+                        "fulfillmentText" : output
                     }));
                 }
                     response.setHeader('Content-Type', 'application/json');
@@ -52,9 +50,9 @@ server.post('/getQuotes',function (request,response)  {
                     }));
 
             });
-    } else if(request.body.result.parameters['movie-name']) {
+    } else if(request.body.queryResult.parameters['movie-name']) {
      //   console.log('popular-movies param found');
-        let movie = request.body.result.parameters['movie-name'];
+        let movie = request.body.queryResult.parameters['movie-name'];
         var req = unirest("GET", "https://api.themoviedb.org/3/search/movie");
             req.query({
                 "include_adult": "false",
@@ -68,8 +66,7 @@ server.post('/getQuotes',function (request,response)  {
                 if(res.error) {
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : "Error. Can you try it again ? ",
-                        "displayText" : "Error. Can you try it again ? "
+                        "fulfillmentText" : "Error. Can you try it again ? "
                     }));
                 } else if(res.body.results.length > 0) {
                 let result = res.body.results[0];
@@ -77,19 +74,17 @@ server.post('/getQuotes',function (request,response)  {
                 "\n Plot : " + result.overview + "url" + result.poster_path
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : output,
-                        "displayText" : output
+                        "fulfillmentText" : output
                     }));
                 } else {
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : "Couldn't find any deatails. :(  ",
-                        "displayText" : "Couldn't find any deatails. :(  "
+                        "fulfillmentText" : "Couldn't find any deatails. :(  "
                     }));
                 }
             });
 
-    } else if(request.body.result.parameters['popular-movies']) {
+    } else if(request.body.queryResult.parameters['popular-movies']) {
         var req = unirest("GET", "https://api.themoviedb.org/3/movie/popular");
             req.query({
                 "page": "1",
@@ -101,8 +96,7 @@ server.post('/getQuotes',function (request,response)  {
                 if(res.error) {
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : "Error. Can you try it again ? ",
-                        "displayText" : "Error. Can you try it again ? "
+                        "fulfillmentText" : "Error. Can you try it again ? "
                     }));
                 } else {
                     let result = res.body.results;
@@ -113,15 +107,14 @@ server.post('/getQuotes',function (request,response)  {
                     }
                     response.setHeader('Content-Type', 'application/json');
                     response.send(JSON.stringify({
-                        "speech" : output,
-                        "displayText" : output
+                        "fulfillmentText" : output
                     }));
                 }
             });
-    }else if(request.body.result.parameters['av']) {
-        var quote_id = 62500;
-        quote_id+=randomInt(10,40);
-        const url1 = `https://favqs.com/api/quotes/${quote_id}/?filter=andrewel&type=user`;
+    }else if(request.body.queryResult.parameters['av']) {
+        let quote_id = 62500 + randomInt(10,40);
+        //quote_id += randomInt(10,40);
+        let url1 = `https://favqs.com/api/quotes/${quote_id}/?filter=andrewel&type=user`;
         var req = unirest("GET", url1);
         req.headers({
             'Authorization': "Token token=ab40a3786cae9e7a777a856f0225a564"
@@ -131,14 +124,12 @@ server.post('/getQuotes',function (request,response)  {
             if(res.error) {
                 response.setHeader('Content-Type', 'application/json');
                 response.send(JSON.stringify({
-                    "speech" : "Error. Can you try it again ? ",
-                    "displayText" : "Error. Can you try it again ? "
+                    "fulfillmentText" : "Error. Can you try it again ? "
                 }));
             } else {
                 response.setHeader('Content-Type', 'application/json');
                 response.send(JSON.stringify({
-                    "speech" : res.body.body + "\n--" + res.body.author,
-                    "displayText" : res.body.body + "\n--" + res.body.author
+                    "fulfillmentText" : res.body.body + "\n--" + res.body.author
                 }));
             }
         });
