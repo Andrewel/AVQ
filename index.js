@@ -17,15 +17,15 @@ function randomInt(low, high) {
 //
 server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
-    if(request.body.result.parameters['q'] || ['next']) {
+    if(request.body.result.parameters['q']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
            /* req.query({
                 "page": "2",
                 "language": "ru-RU",
                 "api_key": "0963ed7e81fa83d7e4518b7018ef0a02"
                 //https://api.themoviedb.org/3/movie/550?api_key=0963ed7e81fa83d7e4518b7018ef0a02
-            });
-            req.send("{}");*/
+            });*/
+            req.send("{}");
             req.end(function(res) {
                 if(res.error) {
                     response.setHeader('Content-Type', 'application/json');
