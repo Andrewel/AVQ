@@ -17,7 +17,7 @@ function randomInt(low, high) {
 //
 server.use(bodyParser.json());
 server.post('/getQuotes',function (request,response)  {
-    if(request.body.queryResult.parameters['q']) {
+    if(request.body.queryResult.parameters['quote']) {
         var req = unirest("GET", "https://favqs.com/api/qotd");
            /* req.query({
                 "page": "2",
